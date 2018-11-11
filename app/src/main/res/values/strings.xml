@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ASM_MOB403</string>
+    <string name="title_home">Home</string>
+    <string name="title_kind">Thể Loại</string>
+    <string name="title_library">Thư Viện</string>
+    <string name="title_profile">Tài Khoản</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
