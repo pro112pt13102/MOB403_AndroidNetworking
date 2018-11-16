@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.thucvuong.asm_mob403.R;
-import com.sutrix.pojo.Truyen;
+import com.sutrix.model.Truyen;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package com.sutrix.common;
 
-import com.sutrix.pojo.Truyen;
+import com.sutrix.model.Truyen;
 
 public class Common {
 

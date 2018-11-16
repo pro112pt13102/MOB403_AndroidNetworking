@@ -1,4 +1,4 @@
-package com.sutrix.pojo;
+package com.sutrix.model;
 
 import com.google.gson.annotations.SerializedName;
 
