@@ -39,13 +39,11 @@
     </android.support.constraint.ConstraintLayout>
 
     <!-- TODO: Update blank fragment layout -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <!--add view1o_giohang vào list view nhé-->
             <android.support.v7.widget.RecyclerView
@@ -54,6 +52,5 @@
                 android:textColor="@color/colorNavText"
                 android:layout_height="match_parent"/>
         </LinearLayout>
-    </ScrollView>
 
 </LinearLayout>
