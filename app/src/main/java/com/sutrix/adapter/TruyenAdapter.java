@@ -44,7 +44,9 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
         Picasso.get().load(truyens.get(i).getHinh()).into(viewHolder.imgView);
 
         viewHolder.textViewTenTruyen.setText(truyens.get(i).getTieuDe());
-        viewHolder.textViewMoTa.setText(truyens.get(i).getMoTa());
+        //viewHolder.textViewMoTa.setText(truyens.get(i).getMoTa());
+        viewHolder.textViewSochuong.setText("Số chương: "+String.valueOf(truyens.get(i).getSoChuong()+" - "));
+        viewHolder.textViewTacgia.setText("Tác giả: "+truyens.get(i).getTacGia());
         viewHolder.textViewNgayUp.setText(truyens.get(i).getNgayUp());
 
     }
@@ -59,7 +61,7 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imgView;
-        TextView textViewTenTruyen, textViewMoTa, textViewNgayUp;
+        TextView textViewTenTruyen, textViewMoTa, textViewNgayUp, textViewSochuong, textViewTacgia;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +72,9 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
 
             imgView = itemView.findViewById(R.id.imgStory);
             textViewTenTruyen = itemView.findViewById(R.id.tv_ten_truyen);
-            textViewMoTa = itemView.findViewById(R.id.tv_mo_ta);
+            //textViewMoTa = itemView.findViewById(R.id.tv_mo_ta);
+            textViewSochuong = itemView.findViewById(R.id.tv_so_chuong);
+            textViewTacgia = itemView.findViewById(R.id.tv_tac_gia);
             textViewNgayUp = itemView.findViewById(R.id.tv_thoi_gian);
 
         }

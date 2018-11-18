@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/tv_ten_truyen"
-            android:textColor="#222222"
+            android:textColor="#ffffff"
             android:textSize="16dp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
@@ -39,12 +39,24 @@
             android:layout_height="wrap_content"
             android:text="Tên Truyện"/>
 
-        <TextView
-            android:id="@+id/tv_mo_ta"
-            android:layout_below="@+id/tv_ten_truyen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mô tả"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_so_chuong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số chương: "
+                android:textColor="#ffffff"/>
+
+            <TextView
+                android:id="@+id/tv_tac_gia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tác giả: "
+                android:textColor="#ffffff"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_thoi_gian"
