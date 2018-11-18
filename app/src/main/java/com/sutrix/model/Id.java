@@ -2,7 +2,9 @@ package com.sutrix.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Id {
+import java.io.Serializable;
+
+public class Id implements Serializable{
 
     @SerializedName("$oid")
     private String oid;

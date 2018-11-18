@@ -1,8 +1,9 @@
 package com.sutrix.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Truyen {
+public class Truyen implements Serializable {
 
     private Id _id;
     private String tieuDe;
@@ -14,12 +15,22 @@ public class Truyen {
     private String ngayCapNhat;
     private String nhomDich;
     private String moTa;
+    private String hinh;
+
+    public String getHinh() {
+        return hinh;
+    }
+
+    public void setHinh(String hinh) {
+        this.hinh = hinh;
+    }
+
     private List<String> noiDung;
 
     public Truyen() {
     }
 
-    public Truyen(Id _id, String tieuDe, String tacGia, List<String> theLoai, String trangThai, int soChuong, String ngayUp, String ngayCapNhat, String nhomDich, String moTa, List<String> noiDung) {
+    public Truyen(Id _id, String tieuDe, String tacGia, List<String> theLoai, String trangThai, int soChuong, String ngayUp, String ngayCapNhat, String nhomDich, String moTa, String hinh, List<String> noiDung) {
         this._id = _id;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
@@ -30,6 +41,7 @@ public class Truyen {
         this.ngayCapNhat = ngayCapNhat;
         this.nhomDich = nhomDich;
         this.moTa = moTa;
+        this.hinh = hinh;
         this.noiDung = noiDung;
     }
 

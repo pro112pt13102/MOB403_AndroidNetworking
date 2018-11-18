@@ -9,18 +9,34 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.sutrix.model.Truyen;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
+    ArrayList<Truyen> truyens = new ArrayList<Truyen>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadFragment(new HomeFragment());
+        //DucNguyen init()
+        init();
+
+        loadFragment(new HomeFragment(truyens));
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
+    }
+
+    private void init() {
+        truyens = (ArrayList<Truyen>) getIntent().getSerializableExtra("truyens");
+
+//        Toast.makeText(this, truyens.get(0).getTieuDe()+"", Toast.LENGTH_SHORT).show();
     }
 
     @Override
