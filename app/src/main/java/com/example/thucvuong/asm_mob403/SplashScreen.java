@@ -50,6 +50,7 @@ public class SplashScreen extends AppCompatActivity{
             @Override
             public void run() {
                 //this repeats every 100 ms
+//                if (i<100){
                 if (i<100){
                     runOnUiThread(new Runnable() {
                         @Override
