@@ -38,6 +38,7 @@ public class MotaActivity extends AppCompatActivity {
     TextView tv_TieuDe, tvTen_tacgia, tvTheloai, tvTrangthai, tvSochuong, tvNgayup, tvNgaycapnhat, tvNoidung;
     ImageView img_hinhsp_chitiet;
     ImageButton img_btn_back;
+    Button btnDoc_truyen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,18 @@ public class MotaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MotaActivity.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnDoc_truyen = findViewById(R.id.btnDoc_truyen);
+        btnDoc_truyen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MotaActivity.this, ReadActivity.class);
+                intent.putExtra("truyens", truyens);
+                startActivity(intent);
+
             }
         });
 
