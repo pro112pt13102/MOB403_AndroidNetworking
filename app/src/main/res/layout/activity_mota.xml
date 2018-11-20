@@ -263,15 +263,15 @@
             </LinearLayout>
         </ScrollView>
 
-        <android.support.design.widget.BottomNavigationView
-            android:id="@+id/navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bgtopbar"
-            app:itemIconTint="@color/colorNavIcon"
-            app:itemTextColor="@color/colorNavText"
-            app:menu="@menu/navigation">
+        <!--<android.support.design.widget.BottomNavigationView-->
+            <!--android:id="@+id/navigation"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/bgtopbar"-->
+            <!--app:itemIconTint="@color/colorNavIcon"-->
+            <!--app:itemTextColor="@color/colorNavText"-->
+            <!--app:menu="@menu/navigation">-->
 
-        </android.support.design.widget.BottomNavigationView>
+        <!--</android.support.design.widget.BottomNavigationView>-->
     </LinearLayout>
 </LinearLayout>
