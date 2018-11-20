@@ -50,18 +50,6 @@ public class MotaActivity extends AppCompatActivity {
         //DucNguyen
         new MotaActivity.GetData().execute(Common.getAddressSingle(_oid));
 
-        new CountDownTimer(5000, 1000) {
-
-            @Override
-            public void onTick(long l) {
-                Toast.makeText(MotaActivity.this, "Đợi chờ là hạnh phúc :)", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFinish() {
-                _setChange();
-            }
-        }.start();
     }
 
 
@@ -210,7 +198,7 @@ public class MotaActivity extends AppCompatActivity {
 
             pd.dismiss();
 
-
+            _setChange();
 
 //            Log.d("DUCNGUYEN", truyens.get(0).getTacGia()+"");
         }
