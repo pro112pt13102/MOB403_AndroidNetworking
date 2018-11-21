@@ -1,5 +1,6 @@
 package com.example.thucvuong.asm_mob403;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -48,6 +49,16 @@ public class ReadActivity extends AppCompatActivity {
 
         btn_previous_truyen = findViewById(R.id.btn_previous_truyen);
         btn_next_truyen = findViewById(R.id.btn_next_truyen);
+
+        img_btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String oid = truyens.get(0).get_id().getOid();
+                Intent intent = new Intent(ReadActivity.this, MotaActivity.class);
+                intent.putExtra("oid", oid);
+                startActivity(intent);
+            }
+        });
 
     }
 
