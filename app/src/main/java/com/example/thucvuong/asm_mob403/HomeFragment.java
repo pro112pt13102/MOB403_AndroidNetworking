@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sutrix.adapter.TruyenAdapter;
@@ -22,6 +23,8 @@ public class HomeFragment extends Fragment {
     ArrayList<Truyen> truyens;
 
     RecyclerView recyclerView;
+
+    TextView tvSo_trang;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -50,9 +53,13 @@ public class HomeFragment extends Fragment {
 
         recyclerView.setAdapter(truyenAdapter);
 
+        tvSo_trang = view.findViewById(R.id.tvSo_trang);
 
+        tvSo_trang.setText("1/"+truyens.size());
 
         return view;
     }
+
+
 
 }
