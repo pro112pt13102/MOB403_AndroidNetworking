@@ -104,11 +104,6 @@
             android:layout_height="wrap_content"
             android:visibility="gone"/>
 
-        <Button
-            android:id="@+id/buttonBlank"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Go to blank" />
 
 
     </LinearLayout>
