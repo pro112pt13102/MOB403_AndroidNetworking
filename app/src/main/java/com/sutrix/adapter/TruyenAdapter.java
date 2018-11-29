@@ -1,10 +1,11 @@
 package com.sutrix.adapter;
 
-import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.thucvuong.asm_mob403.HomeFragment;
+import com.example.thucvuong.asm_mob403.MainActivity;
 import com.example.thucvuong.asm_mob403.MotaActivity;
 import com.example.thucvuong.asm_mob403.R;
 import com.squareup.picasso.Picasso;
@@ -27,6 +28,7 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
     ArrayList<Truyen> truyens;
     Context context;
 
+
     public TruyenAdapter(ArrayList<Truyen> truyens, Context context) {
         this.truyens = truyens;
         this.context = context;
@@ -34,18 +36,30 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull final ViewGroup viewGroup, int i) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(viewGroup.getContext());
-        View itemView = layoutInflater.inflate(R.layout.view_1_o, viewGroup, false);
+        final View itemView = layoutInflater.inflate(R.layout.view_1_o, viewGroup, false);
 
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                //getData String oid from truyens Arraylist
+                String oidTruyenSendToMoTa = truyens.get(viewGroup.indexOfChild(itemView)).get_id().getOid();
+
+                Intent intent = new Intent(context, MotaActivity.class);
+                intent.putExtra("oid", oidTruyenSendToMoTa);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                context.startActivity(intent);
+            }
+        });
 
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
         Picasso.get().load(truyens.get(i).getHinh()).into(viewHolder.imgView);
 
@@ -54,24 +68,6 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
         viewHolder.textViewSochuong.setText("Số chương: "+String.valueOf(truyens.get(i).getSoChuong()+" - "));
         viewHolder.textViewTacgia.setText("Tác giả: "+truyens.get(i).getTacGia());
         viewHolder.textViewNgayUp.setText(truyens.get(i).getNgayUp());
-
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(context, ""+i, Toast.LENGTH_SHORT).show();
-                Context context = view.getContext();
-                Intent intent = new Intent( context, MotaActivity.class);
-
-                intent.putExtra("index", i);
-
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("truyens", truyens);
-                intent.putExtra("BUNDLE", bundle);
-
-
-                context.startActivity(intent);
-            }
-        });
 
     }
 
