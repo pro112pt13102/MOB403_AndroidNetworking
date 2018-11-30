@@ -77,13 +77,15 @@
             android:visibility="gone"/>
 
         <TextView
+            android:id="@+id/text_signIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorNavText"
-            android:text="Version : 1.0.0"
+            android:text="Đăng nhập"
             android:layout_gravity="center"
-            android:textSize="15sp"
-            android:layout_margin="20dp" />
+            android:textSize="20sp"
+            android:layout_margin="30dp"
+            android:textStyle="bold"/>
 
 
         <android.support.design.widget.TextInputLayout
@@ -97,8 +99,7 @@
                 android:layout_marginBottom="20dp"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:backgroundTint="@color/colorAccent" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -107,24 +108,24 @@
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:backgroundTint="@color/colorAccent" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:layout_marginBottom="10dp"
-            android:textSize="20dp"
             android:id="@+id/btn_login"
-            android:layout_width="305dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:text="LOGIN"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorAccent"
+            android:text="Đăng nhập"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imgView_GG"
@@ -145,6 +146,16 @@
             android:layout_height="wrap_content"
             android:text="Sign Out"
             android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="Chưa có tài khoản? Đăng ký ngay"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
 
         <ProgressBar
             android:id="@+id/progressBarGG"

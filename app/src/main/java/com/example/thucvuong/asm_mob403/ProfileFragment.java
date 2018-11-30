@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,15 +42,17 @@ public class ProfileFragment extends Fragment {
 
     private FirebaseAuth auth;
     private FirebaseUser user;
-    private TextView tv_username, tv_usermail;
+    private TextView tv_username, tv_usermail, tv_signIn;
     private String TAG = "GG";
-    private Button btn_signout_gg, btn_login, btn_signout;
+    private Button btn_signout_gg, btn_login, btn_signout, btn_link_signup;
 
     private ImageView img_profile, img_GG;
     private EditText edt_email, edt_password;
     private ProgressBar progressBar;
 
     private GoogleSignInClient mGoogleSignInClient;
+
+    FragmentManager fragmentManager;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -102,6 +106,8 @@ public class ProfileFragment extends Fragment {
                 btn_login.setVisibility(View.GONE);
                 btn_signout.setVisibility(View.VISIBLE);
                 img_GG.setVisibility(View.GONE);
+                btn_link_signup.setVisibility(View.GONE);
+                tv_signIn.setVisibility(View.GONE);
 
                 } else if (user.getProviderId().equals("google.com")) {
                     //For linked Google account
@@ -173,6 +179,8 @@ public class ProfileFragment extends Fragment {
                                     btn_login.setVisibility(View.GONE);
                                     btn_signout.setVisibility(View.VISIBLE);
                                     img_GG.setVisibility(View.GONE);
+                                    btn_link_signup.setVisibility(View.GONE);
+                                    tv_signIn.setVisibility(View.GONE);
 
 
 
@@ -196,7 +204,20 @@ public class ProfileFragment extends Fragment {
                 img_profile.setVisibility(View.GONE);
                 btn_login.setVisibility(View.VISIBLE);
                 btn_signout.setVisibility(View.GONE);
+                btn_link_signup.setVisibility(View.VISIBLE);
+                tv_signIn.setVisibility(View.VISIBLE);
 
+            }
+        });
+
+        btn_link_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new SignupFragment());
+                fragmentTransaction.commit();
+                /*fragmentManager.beginTransaction().replace(R.id.fragment_container, new SignupFragment())
+                        .commit();*/
             }
         });
 
@@ -221,6 +242,8 @@ public class ProfileFragment extends Fragment {
          edt_email = view.findViewById(R.id.email);
          edt_password = view.findViewById(R.id.password);
          btn_signout = view.findViewById(R.id.buttonSignout);
+         btn_link_signup = view.findViewById(R.id.btn_signup);
+         tv_signIn = view.findViewById(R.id.text_signIn);
 
 
     }
@@ -293,6 +316,8 @@ public class ProfileFragment extends Fragment {
         edt_email.setVisibility(View.VISIBLE);
         edt_password.setVisibility(View.VISIBLE);
         btn_login.setVisibility(View.VISIBLE);
+        btn_link_signup.setVisibility(View.VISIBLE);
+        tv_signIn.setVisibility(View.VISIBLE);
     }
 
     private void UpdateProfileView_GG(){
@@ -321,6 +346,8 @@ public class ProfileFragment extends Fragment {
         edt_email.setVisibility(View.GONE);
         edt_password.setVisibility(View.GONE);
         btn_login.setVisibility(View.GONE);
+        btn_link_signup.setVisibility(View.GONE);
+        tv_signIn.setVisibility(View.GONE);
     }
 
 
