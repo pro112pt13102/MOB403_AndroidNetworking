@@ -115,8 +115,8 @@ public class SplashScreen extends AppCompatActivity{
             try {
 
                 jsonArray = new JSONArray(s);
-
-                for (int i=0; i<jsonArray.length(); i++){
+                int length = jsonArray.length();
+                for (int i=0; i<length; i++){
 
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
