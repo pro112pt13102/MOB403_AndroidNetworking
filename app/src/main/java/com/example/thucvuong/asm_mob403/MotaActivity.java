@@ -29,6 +29,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MotaActivity extends AppCompatActivity {
 
     String _oid;
@@ -39,6 +41,8 @@ public class MotaActivity extends AppCompatActivity {
     ImageView img_hinhsp_chitiet;
     ImageButton img_btn_back;
     Button btnDoc_truyen;
+    CircleImageView civHinhTruyen;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,15 +73,14 @@ public class MotaActivity extends AppCompatActivity {
         tvNgayup = findViewById(R.id.tvNgayup);
         tvNgaycapnhat = findViewById(R.id.tvNgaycapnhat);
         tvNoidung = findViewById(R.id.tvNoidung);
-
+        civHinhTruyen = findViewById(R.id.civHinhTruyen);
         img_hinhsp_chitiet = findViewById(R.id.img_hinhsp_chitiet);
-
         img_btn_back = findViewById(R.id.img_btn_back);
         img_btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MotaActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
+
             }
         });
 
@@ -113,6 +116,8 @@ public class MotaActivity extends AppCompatActivity {
         tvNoidung.setText(truyens.get(0).getMoTa());
 
         Picasso.get().load(truyens.get(0).getHinh()).into(img_hinhsp_chitiet);
+        Picasso.get().load(truyens.get(0).getHinh()).into(civHinhTruyen);
+
     }
 
 

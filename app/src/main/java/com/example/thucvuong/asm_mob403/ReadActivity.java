@@ -53,10 +53,12 @@ public class ReadActivity extends AppCompatActivity {
         img_btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String oid = truyens.get(0).get_id().getOid();
-                Intent intent = new Intent(ReadActivity.this, MotaActivity.class);
-                intent.putExtra("oid", oid);
-                startActivity(intent);
+                finish();
+//                dư rồi nha -_-
+//                String oid = truyens.get(0).get_id().getOid();
+//                Intent intent = new Intent(ReadActivity.this, MotaActivity.class);
+//                intent.putExtra("oid", oid);
+//                startActivity(intent);
             }
         });
 

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_weight="0"
-            android:background="@drawable/bgtopbar">
+            android:background="@drawable/bgbotombar">
 
             <ImageButton
                 android:id="@+id/img_btn_back"
@@ -33,11 +33,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_TieuDe"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:gravity="center"
-                android:text="Doraemon"
+                android:text="Thông Tin"
                 android:textColor="@color/colorNavText"
                 android:textSize="@dimen/sizeTitle"
                 android:textStyle="bold" />
@@ -55,25 +54,62 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.CardView
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="320dp"
-                    android:layout_margin="10dp"
-                    app:cardCornerRadius="15dp">
+                    android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_hinhsp_chitiet"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civHinhTruyen"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="32dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:elevation="10dp"/>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cardView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:background="@drawable/doremon"
-                        android:scaleType="fitXY" />
-                </android.support.v7.widget.CardView>
+                        android:layout_height="350dp"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:alpha="0.3"
+                            android:id="@+id/img_hinhsp_chitiet"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/doremon"
+                            android:scaleType="fitXY" />
+                    </android.support.v7.widget.CardView>
+
+                </android.support.constraint.ConstraintLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_TieuDe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên Truyện"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        />
+</LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
 
                     <TextView
                         android:id="@+id/tvTen_tac_gia"
@@ -81,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Tên tác giả :"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
 
                     <TextView
@@ -90,7 +126,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Thức Vương"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
                 </LinearLayout>
 
@@ -105,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Thể loại :"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
 
                     <TextView
@@ -114,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Hài hước, tình cảm"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
                 </LinearLayout>
 
@@ -129,7 +165,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Trạng thái :"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
 
                     <TextView
@@ -138,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Full"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
                 </LinearLayout>
 
@@ -153,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Số chương :"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
 
                     <TextView
@@ -162,7 +198,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="45/45"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
                 </LinearLayout>
 
@@ -178,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Ngày Upload :"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
 
                     <TextView
@@ -187,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="5/11/2018 "
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
                 </LinearLayout>
 
@@ -202,7 +238,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Ngày cập nhật :"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
 
                     <TextView
@@ -211,7 +247,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="06/11/2018"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorTieuDeTruyen"
                         android:textSize="@dimen/sizeChu" />
                 </LinearLayout>
 
@@ -226,7 +262,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="Nội dung :"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorNavText"
                         android:textSize="@dimen/sizeChu" />
 
                     <TextView
@@ -235,7 +271,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/marginLeft"
                         android:text="góc này chém gió nha chém dài ra nhiều nhiều cho đẹp trên 50 từ..."
-                        android:textColor="#ffffff"
+                        android:textColor="@color/colorNavText"
                         android:textSize="@dimen/sizeChu" />
                 </LinearLayout>
 
@@ -244,21 +280,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/marginLeft"
-                    android:background="@drawable/bgtheloai"
+                    android:background="@drawable/bgnutdoctruyen"
                     android:padding="5dp"
                     android:text="Đọc Truyện"
                     android:textColor="@color/colorNavText"
                     android:textStyle="bold" />
-                <Button
-                    android:id="@+id/btnthem_truyen"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/marginLeft"
-                    android:background="@drawable/bgtheloai"
-                    android:padding="5dp"
-                    android:text="Thêm vào thư viện"
-                    android:textColor="@color/colorNavText"
-                    android:textStyle="bold" />
+
 
             </LinearLayout>
         </ScrollView>
@@ -267,7 +294,7 @@
             <!--android:id="@+id/navigation"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/bgtopbar"-->
+            <!--android:background="@drawable/bgbotombar"-->
             <!--app:itemIconTint="@color/colorNavIcon"-->
             <!--app:itemTextColor="@color/colorNavText"-->
             <!--app:menu="@menu/navigation">-->
