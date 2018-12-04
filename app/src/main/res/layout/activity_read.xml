@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgmota"
+    android:background="#ffffff"
     tools:context=".ReadActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/bgtopbar"
+        android:background="@color/colortieude"
         android:layout_weight="0">
 
         <ImageButton
@@ -31,7 +31,7 @@
             android:id="@+id/tv_TieuDeTruyen"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:textColor="@color/colorNavText"
+            android:textColor="#00b050"
             android:text="Doremon"
             android:textStyle="bold"
             android:gravity="center"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="Chapter 1: Kaitou sentai Lupinranger vs Keisatsu sentai Patranger"
                 android:textSize="@dimen/sizeTitle"
-                android:textColor="@color/colorNavText"
+                android:textColor="@color/colorNoidung"
                 android:gravity="center"/>
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="@dimen/sizeChu"
-                android:textColor="@color/colorNavText"
+                android:textColor="@color/colorNoidung"
                 android:padding="@dimen/marginLeft"
                 android:text="Đây là nội dung của truyện, khi nào hoàn tất sẽ có đầy đủ."/>
 

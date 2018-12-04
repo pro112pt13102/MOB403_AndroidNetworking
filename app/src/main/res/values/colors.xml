@@ -6,4 +6,14 @@
     <color name="colorNavIcon">#ffffff</color>
     <color name="colorNavText">#ffffff</color>
     <color name="colorTopbar">#6666FF</color>
+    <color name="colortieude">#cff0dd</color>
+    <color name="colorNoidung">#000000</color>
+    <color name="colorToolBar">#172f42</color>
+    <color name="colorTieuDeTruyen">#f9b400</color>
+    <color name="colorBgGrid">#293d4d</color>
+    <color name="colorMotaTruyen">#999999</color>
+
+
+
+
 </resources>

@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/m_title"
-            android:textColor="#222222"
+            android:textColor="@color/colorTieuDeTruyen"
             android:textSize="16dp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
@@ -48,7 +48,6 @@
 
         <TextView
             android:id="@+id/m_time"
-            android:textColor="#999999"
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_height="wrap_content"

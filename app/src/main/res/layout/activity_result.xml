@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="Truyện Full"
-            android:textSize="20dp"
-            android:textColor="@color/colorNavText"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="10dp" />
 
@@ -29,31 +29,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:text="1/???"
+            android:text=""
             android:textSize="18dp"
-            android:textColor="@color/colorNavText"
+            android:textColor="#ffffff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/truyenfull"
             android:layout_marginLeft="10dp" />
 
-        <EditText
-            android:id="@+id/edtSearch"
-            android:layout_width="170sp"
+        <TextView
+            android:id="@+id/tvTongSoTrang"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
             android:text=""
-            android:hint="Nhập tên truyện"
-            android:visibility="invisible"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
+            android:textColor="#ffffff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_search"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/tvSo_trang" />
 
         <Button
             android:id="@+id/btn_search"
@@ -63,7 +56,7 @@
             android:layout_marginEnd="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/ic_search_trang"
+            android:background="@drawable/ic_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -76,29 +69,28 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/ic_refresh_trang"
+            android:background="@drawable/ic_refresh"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+
     </android.support.constraint.ConstraintLayout>
 
     <!-- TODO: Update blank fragment layout -->
-    <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="vertical">-->
-            <!--add view1o_giohang vào list view nhé-->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rc_trangchu"
-                android:layout_width="match_parent"
-                android:textColor="@color/colorNavText"
-                android:layout_height="match_parent"/>
-        <!--</LinearLayout>-->
-    <!--</ScrollView>-->
+
+        <!--add view1o_giohang vào list view nhé-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rc_trangchu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 </LinearLayout>
