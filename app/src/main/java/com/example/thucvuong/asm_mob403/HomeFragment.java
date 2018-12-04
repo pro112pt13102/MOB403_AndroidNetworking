@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
                     edtSearch.setVisibility(View.VISIBLE);
                     return;
                 }
-                String searchName = edtSearch.getText().toString().trim();
+                String searchName = edtSearch.getText().toString().trim().toUpperCase();
                 if(searchName.equals("")){
                     Toast.makeText(getActivity(), "Bạn chưa nhập tên truyện", Toast.LENGTH_SHORT).show();
                     return;

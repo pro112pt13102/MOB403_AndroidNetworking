@@ -76,7 +76,45 @@ public class TheLoaiAdapter extends RecyclerView.Adapter<TheLoaiAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-        viewHolder.textViewTheLoai.setText(theloais.get(i).toString());
+//        viewHolder.textViewTheLoai.setText(theloais.get(i).toString());
+
+        String theloai = theloais.get(i).toString();
+
+        switch (theloai){
+            case "NgonTinh": {
+                viewHolder.textViewTheLoai.setText("Ngôn Tình");break;
+            }
+
+            case "TienHiep": {
+                viewHolder.textViewTheLoai.setText("Tiên Hiệp");break;
+            }
+
+            case "KiemHiep": {
+                viewHolder.textViewTheLoai.setText("Kiếm Hiệp");break;
+            }
+
+            case "TruyenTeen": {
+                viewHolder.textViewTheLoai.setText("Truyện Teen");break;
+            }
+
+            case "DoThi": {
+                viewHolder.textViewTheLoai.setText("Đô Thị");break;
+            }
+
+            case "HaiHuoc": {
+                viewHolder.textViewTheLoai.setText("Hài Hước");break;
+            }
+
+            case "QuanSu": {
+                viewHolder.textViewTheLoai.setText("Quân Sự");break;
+            }
+
+            case "LichSu": {
+                viewHolder.textViewTheLoai.setText("Lịch Sử");break;
+            }
+
+            default: break;
+        }
 
     }
 
