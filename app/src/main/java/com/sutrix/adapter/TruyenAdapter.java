@@ -70,7 +70,10 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
 
                 Intent intent = new Intent(context, MotaActivity.class);
                 intent.putExtra("oid", oidTruyenSendToMoTa);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                dòng này bấm back là bay app ???
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+
                 context.startActivity(intent);
             }
         });
