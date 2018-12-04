@@ -2,7 +2,7 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="sizeTitle">25sp</dimen>
-    <dimen name="sizeChu">22sp</dimen>
+    <dimen name="sizeTitle">20sp</dimen>
+    <dimen name="sizeChu">20sp</dimen>
     <dimen name="marginLeft">10sp</dimen>
 </resources>

@@ -24,6 +24,8 @@ import com.sutrix.model.Truyen;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder> {
 
     ArrayList<Truyen> truyens;
@@ -89,7 +91,7 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView imgView;
+        CircleImageView imgView;
         TextView textViewTenTruyen, textViewMoTa, textViewNgayUp, textViewSochuong, textViewTacgia;
 
 

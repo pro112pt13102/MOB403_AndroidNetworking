@@ -48,10 +48,19 @@
             <!--android:numColumns="2"-->
             <!--android:textAlignment="center"/>-->
     <!--</ScrollView>-->
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc_theloai"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        android:layout_gravity="center_horizontal"
+        />
+    </LinearLayout>
 </LinearLayout>

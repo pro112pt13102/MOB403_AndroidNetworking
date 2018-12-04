@@ -99,7 +99,7 @@
         android:text="Tên Truyện"
         android:textColor="#ffffff"
         android:textAlignment="center"
-        android:textSize="28sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         />
 </LinearLayout>

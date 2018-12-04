@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity{
         textView=(TextView)findViewById(R.id.textView);
         textView.setText("");
 
-        final long period = 100;
+        final long period = 85;
         timer=new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -85,8 +85,8 @@ public class SplashScreen extends AppCompatActivity{
         protected void onPreExecute() {
             super.onPreExecute();
 
-            pd.setTitle("Please Wait ...");
-            pd.show();
+//            pd.setTitle("Please Wait ...");
+//            pd.show();
         }
 
         @Override
