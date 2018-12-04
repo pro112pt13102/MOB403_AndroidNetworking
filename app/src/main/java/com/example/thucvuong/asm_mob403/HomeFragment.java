@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sutrix.adapter.TruyenAdapter;
+import com.sutrix.common.Common;
 import com.sutrix.model.Truyen;
 
 import java.util.ArrayList;
@@ -59,11 +60,10 @@ public class HomeFragment extends Fragment {
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "làm nút refresh nè", Toast.LENGTH_SHORT).show();
-
-//                HomeFragment homeFragment = new HomeFragment();
-//                FragmentManager manager = getActivity().getSupportFragmentManager();
-//                manager.beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
+                Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
+                
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
 
 
             }
