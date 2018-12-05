@@ -21,6 +21,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -38,6 +43,11 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserInfo;
 import com.squareup.picasso.Picasso;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class ProfileFragment extends Fragment {
 
     private FirebaseAuth auth;
@@ -52,7 +62,12 @@ public class ProfileFragment extends Fragment {
 
     private GoogleSignInClient mGoogleSignInClient;
 
+    private LoginButton mBtnLoginFacebook;
+    private CallbackManager mCallbackManager;
+
     FragmentManager fragmentManager;
+
+
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -68,7 +83,33 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(getActivity());
+
         init(view);
+
+        mCallbackManager = CallbackManager.Factory.create();
+        mBtnLoginFacebook = (LoginButton) view.findViewById(R.id.btn_login_facebook);
+        mBtnLoginFacebook.setReadPermissions("email");
+        mBtnLoginFacebook.setFragment(this);
+
+        mBtnLoginFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                Toast.makeText(getContext(), ""+loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
 
         auth = FirebaseAuth.getInstance();
 
@@ -255,6 +296,7 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);

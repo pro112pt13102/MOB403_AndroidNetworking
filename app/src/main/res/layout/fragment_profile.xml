@@ -121,12 +121,20 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/buttongg" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/imgView_FB"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
-            app:srcCompat="@drawable/buttonfb"/>
+            app:srcCompat="@drawable/buttonfb"/>-->
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btn_login_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
 
 
         <Button
