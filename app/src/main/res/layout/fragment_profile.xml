@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="Đăng Nhập"
+            android:text="Tài Khoản"
             android:textColor="@color/colorNavText"
             android:textSize="@dimen/sizeTitle"
             android:textStyle="bold" />
@@ -72,7 +72,7 @@
             android:text="Đăng nhập"
             android:layout_gravity="center"
             android:textSize="20sp"
-            android:layout_margin="30dp"
+            android:layout_margin="10dp"
             android:textStyle="bold"/>
 
 
@@ -120,6 +120,14 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             app:srcCompat="@drawable/buttongg" />
+
+        <ImageView
+            android:id="@+id/imgView_FB"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/buttonfb"/>
+
 
         <Button
             android:id="@+id/buttonSignout_GG"

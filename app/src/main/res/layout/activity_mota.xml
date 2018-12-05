@@ -51,7 +51,7 @@
                         android:id="@+id/cardView"
                         android:layout_width="match_parent"
                         android:layout_height="260dp"
-                        app:cardCornerRadius="15dp">
+                        app:cardCornerRadius="0dp">
                         <ImageButton
                             android:id="@+id/img_btn_back"
                             android:layout_width="40dp"

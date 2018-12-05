@@ -46,7 +46,7 @@ public class ProfileFragment extends Fragment {
     private String TAG = "GG";
     private Button btn_signout_gg, btn_login, btn_signout, btn_link_signup;
 
-    private ImageView img_profile, img_GG;
+    private ImageView img_profile, img_GG, imgView_FB;
     private EditText edt_email, edt_password;
     private ProgressBar progressBar;
 
