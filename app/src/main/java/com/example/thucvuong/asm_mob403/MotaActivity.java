@@ -131,7 +131,7 @@ public class MotaActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            pd.setTitle("Please Wait ...");
+            pd.setTitle("Chờ chút ...");
             pd.show();
         }
 
