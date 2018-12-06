@@ -20,6 +20,7 @@ import com.example.thucvuong.asm_mob403.MotaActivity;
 import com.example.thucvuong.asm_mob403.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.PicassoProvider;
+import com.sutrix.inter.OnBottomReachedListener;
 import com.sutrix.model.Truyen;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder> {
+
+    OnBottomReachedListener onBottomReachedListener;
 
     ArrayList<Truyen> truyens;
     Context context;
@@ -80,6 +83,12 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
             }
         });
 
+        if (i == truyens.size() - 1){
+
+            onBottomReachedListener.onBottomReached(i);
+
+        }
+
     }
 
     @Override
@@ -109,5 +118,10 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
         }
 
 
+    }
+
+    public void setOnBottomReachedListener(OnBottomReachedListener onBottomReachedListener){
+
+        this.onBottomReachedListener = onBottomReachedListener;
     }
 }

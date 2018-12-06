@@ -27,6 +27,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+
+
     ArrayList<Truyen> truyens = new ArrayList<Truyen>();
 
     @Override
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             loadFragment(new HomeFragment(truyens));
         }else {
 
-            new MainActivity.GetData().execute(Common.getAddressAPI());
+            new MainActivity.GetData().execute(Common.getAddressWithLimit(SplashScreen.limitTruyen));
 
             new CountDownTimer(4000, 1000) {
                 ProgressDialog pd;
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                fragment = new HomeFragment(truyens);
+                fragment = new HomeFragment(truyens, true);
                 break;
 
             case R.id.navigation_theloai:

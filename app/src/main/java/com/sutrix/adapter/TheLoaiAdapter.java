@@ -241,7 +241,7 @@ public class TheLoaiAdapter extends RecyclerView.Adapter<TheLoaiAdapter.ViewHold
             }
 
             // Get Data rồi đổ vào arraylist truyện -> replace fragment hiện tại thành home fragment
-            fragmentManager.beginTransaction().replace(R.id.fragment_container, new HomeFragment(truyens))
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, new HomeFragment(truyens, false))
                     .commit();
 
 //            Toast.makeText(SplashScreen.this, truyens.get(1).getHinh()+"", Toast.LENGTH_SHORT).show();

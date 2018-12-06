@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bgmota"
+    android:background="@drawable/bgprofile"
     android:orientation="vertical"
     tools:context=".ProfileFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorToolBar">
+        >
 
 
         <TextView
@@ -86,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:hint="Email"
+                android:textColor="#ffffff"
                 android:inputType="textEmailAddress"
                 android:backgroundTint="@color/colorAccent" />
         </android.support.design.widget.TextInputLayout>
@@ -100,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:hint="Password"
+                android:textColor="#ffffff"
                 android:inputType="textPassword"
                 android:backgroundTint="@color/colorAccent" />
         </android.support.design.widget.TextInputLayout>
@@ -131,9 +133,10 @@
         <com.facebook.login.widget.LoginButton
             android:id="@+id/btn_login_facebook"
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp" />
 
 
         <Button

@@ -23,6 +23,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashScreen extends AppCompatActivity{
+
+    //limit truyen;
+    public static int limitTruyen = 10;
+
+
     private Timer timer;
     private ProgressBar progressBar;
     private int i=0;
@@ -37,14 +42,14 @@ public class SplashScreen extends AppCompatActivity{
         setContentView(R.layout.activity_splash_screen);
 
         //DucNguyen
-        new GetData().execute(Common.getAddressAPI());
+        new GetData().execute(Common.getAddressWithLimit(limitTruyen));
 
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
         progressBar.setProgress(0);
         textView=(TextView)findViewById(R.id.textView);
         textView.setText("");
 
-        final long period = 85;
+        final long period = 100;
         timer=new Timer();
         timer.schedule(new TimerTask() {
             @Override

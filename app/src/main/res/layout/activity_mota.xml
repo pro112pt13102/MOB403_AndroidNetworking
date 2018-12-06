@@ -67,7 +67,6 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.033" />
 
-
                         <ImageView
                             android:alpha="0.3"
                             android:id="@+id/img_hinhsp_chitiet"

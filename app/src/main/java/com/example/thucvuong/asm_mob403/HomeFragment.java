@@ -2,7 +2,9 @@ package com.example.thucvuong.asm_mob403;
 
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,12 +22,24 @@ import android.widget.Toast;
 
 import com.sutrix.adapter.TruyenAdapter;
 import com.sutrix.common.Common;
+import com.sutrix.common.HTTPDataHandler;
+import com.sutrix.inter.OnBottomReachedListener;
+import com.sutrix.model.Id;
 import com.sutrix.model.Truyen;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public class HomeFragment extends Fragment {
+
+    public static boolean flagLoadMore = true;
 
     ArrayList<Truyen> truyens;
 
@@ -35,6 +49,8 @@ public class HomeFragment extends Fragment {
     Button btn_refresh, btn_search;
     EditText edtSearch;
 
+    TruyenAdapter truyenAdapter;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -42,6 +58,12 @@ public class HomeFragment extends Fragment {
     @SuppressLint("ValidFragment")
     public HomeFragment(ArrayList<Truyen> truyens) {
         this.truyens = truyens;
+    }
+
+    @SuppressLint("ValidFragment")
+    public HomeFragment(ArrayList<Truyen> truyens, boolean flagLoadMore){
+        this.truyens = truyens;
+        this.flagLoadMore = flagLoadMore;
     }
 
     @Override
@@ -61,7 +83,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
-                
+
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
 
@@ -96,13 +118,28 @@ public class HomeFragment extends Fragment {
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        TruyenAdapter truyenAdapter = new TruyenAdapter(truyens, getActivity().getApplicationContext());
+        truyenAdapter = new TruyenAdapter(truyens, getActivity().getApplicationContext());
 
         recyclerView.setAdapter(truyenAdapter);
 
         tvSo_trang = view.findViewById(R.id.tvSo_trang);
 
         tvSo_trang.setText("1/"+truyens.size());
+
+
+        truyenAdapter.setOnBottomReachedListener(new OnBottomReachedListener() {
+            @Override
+            public void onBottomReached(int position) {
+                //your code goes here
+//                Toast.makeText(getActivity(), "asd", Toast.LENGTH_SHORT).show();
+                if (flagLoadMore){
+                    SplashScreen.limitTruyen += 10;
+                    new GetData().execute(Common.getAddressWithLimit(SplashScreen.limitTruyen));
+                }
+
+
+            }
+        });
 
 
 
@@ -112,6 +149,125 @@ public class HomeFragment extends Fragment {
     }
 
 
+    //DucNguyen getData
+    class GetData extends AsyncTask<String, Void, String> {
+
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+//            Toast.makeText(getActivity(), "Please wait ...", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            String temp = null;
+
+            String urlString = strings[0];
+
+            HTTPDataHandler http = new HTTPDataHandler();
+
+            temp = http.getHTTPData(urlString);
+
+            return temp;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            JSONArray jsonArray = null;
+
+            Object temp = null;
+            String $oid = null;
+
+            try {
+
+                jsonArray = new JSONArray(s);
+
+                for (int i=0; i<jsonArray.length(); i++){
+
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    JSONObject _id = jsonObject.getJSONObject("_id");
+                    $oid = _id.getString("$oid");
+
+                    String tieude = jsonObject.getString("TieuDe");
+                    String tacgia = jsonObject.getString("TacGia");
+                    String trangthai = jsonObject.getString("TrangThai");
+                    int sochuong = Integer.parseInt(jsonObject.getString("SoChuong"));
+                    String ngayup = jsonObject.getString("NgayUp");
+                    String ngaycapnhat = jsonObject.getString("NgayCapNhat");
+                    String nhomdich = jsonObject.getString("NhomDich");
+                    String mota = jsonObject.getString("MoTa");
+                    String hinh = jsonObject.getString("Hinh");
+
+                    //Get The Loai
+                    JSONArray tempTheLoais = jsonObject.getJSONArray("TheLoai");
+                    List<String> theloais = new ArrayList<>();
+                    for (int x = 0; x < tempTheLoais.length(); x++){
+                        theloais.add(tempTheLoais.getString(x));
+                    }
+
+                    //Get Noi Dung
+                    JSONArray tempNoiDungs = jsonObject.getJSONArray("NoiDung");
+                    List<String> noidungs = new ArrayList<>();
+                    for (int z = 0; z < tempNoiDungs.length(); z++){
+                        noidungs.add(tempNoiDungs.getString(z));
+                    }
+
+                    Truyen truyen = new Truyen();
+                    Id id = new Id();
+
+                    id.setOid($oid);
+                    truyen.set_id(id);
+                    truyen.setTieuDe(tieude);
+                    truyen.setTacGia(tacgia);
+                    truyen.setTheLoai(theloais);
+                    truyen.setTrangThai(trangthai);
+                    truyen.setSoChuong(sochuong);
+                    truyen.setNgayUp(ngayup);
+                    truyen.setNgayCapNhat(ngaycapnhat);
+                    truyen.setNhomDich(nhomdich);
+                    truyen.setMoTa(mota);
+                    truyen.setNoiDung(noidungs);
+                    truyen.setHinh(hinh);
+
+
+                    //custom
+                    boolean flag = false;
+                    for (Truyen truyen1 : truyens){
+                        if (truyen1.getTieuDe().equalsIgnoreCase(truyen.getTieuDe())){
+                            flag = true;
+                        }
+                    }
+                    if (!flag){
+                        truyens.add(truyen);
+                    }
+
+
+                }
+
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+
+
+//            Toast.makeText(SplashScreen.this, truyens.get(1).getHinh()+"", Toast.LENGTH_SHORT).show();
+
+            tvSo_trang.setText("1/"+truyens.size());
+
+            truyenAdapter.notifyDataSetChanged();
+
+
+        }
+    }
 
 
 
