@@ -21,9 +21,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -45,6 +48,11 @@ import com.squareup.picasso.Picasso;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -90,14 +98,61 @@ public class ProfileFragment extends Fragment {
 
         mCallbackManager = CallbackManager.Factory.create();
         mBtnLoginFacebook = (LoginButton) view.findViewById(R.id.btn_login_facebook);
-        mBtnLoginFacebook.setReadPermissions("email");
+        //mBtnLoginFacebook.setReadPermissions("email");
+        mBtnLoginFacebook.setReadPermissions(Arrays.asList("email, public_profile"));
         mBtnLoginFacebook.setFragment(this);
 
         mBtnLoginFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
-                Toast.makeText(getContext(), ""+loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), ""+loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                img_profile.setVisibility(View.VISIBLE);
+
+                edt_email.setVisibility(View.GONE);
+                edt_password.setVisibility(View.GONE);
+                btn_login.setVisibility(View.GONE);
+                img_GG.setVisibility(View.GONE);
+                btn_link_signup.setVisibility(View.GONE);
+                tv_signIn.setVisibility(View.GONE);
+                tv_username.setVisibility(View.VISIBLE);
+
+
+
+                AccessToken accessToken = loginResult.getAccessToken();
+                GraphRequest request = GraphRequest.newMeRequest(
+                        accessToken,
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                try {
+
+                                    String userID = object.getString("id");
+                                    String userName = object.getString("name");
+
+                                    Picasso.get().load("https://graph.facebook.com/" + userID+ "/picture?type=large").into(img_profile);
+                                    tv_username.setText(userName);
+
+                                    Toast.makeText(getContext(), ""+userID+" "+userName, Toast.LENGTH_SHORT).show();
+
+                                    //Picasso.get().load("https://graph.facebook.com/" + userID+ "/picture?type=large").into(imageView);
+                                    //Bitmap b = (Bitmap) object.get("picture");
+                                    Log.d("o/p", "name");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                //parameters.putString("fields", "id,name,link,birthday,picture");
+                parameters.putString("fields", "id,name");
+                request.setParameters(parameters);
+                request.executeAsync();
             }
 
             @Override
@@ -141,7 +196,6 @@ public class ProfileFragment extends Fragment {
                 Picasso.get().load("http://bestnycacupuncturist.com/wp-content/uploads/2016/11/anonymous-avatar-sm.jpg").into(img_profile);
                 tv_usermail.setVisibility(View.VISIBLE);
                 tv_usermail.setText(email);
-                img_GG.setVisibility(View.GONE);
                 edt_email.setVisibility(View.GONE);
                 edt_password.setVisibility(View.GONE);
                 btn_login.setVisibility(View.GONE);
@@ -149,6 +203,7 @@ public class ProfileFragment extends Fragment {
                 img_GG.setVisibility(View.GONE);
                 btn_link_signup.setVisibility(View.GONE);
                 tv_signIn.setVisibility(View.GONE);
+                mBtnLoginFacebook.setVisibility(View.GONE);
 
                 } else if (user.getProviderId().equals("google.com")) {
                     //For linked Google account
@@ -222,6 +277,7 @@ public class ProfileFragment extends Fragment {
                                     img_GG.setVisibility(View.GONE);
                                     btn_link_signup.setVisibility(View.GONE);
                                     tv_signIn.setVisibility(View.GONE);
+                                    mBtnLoginFacebook.setVisibility(View.GONE);
 
 
 
@@ -247,6 +303,7 @@ public class ProfileFragment extends Fragment {
                 btn_signout.setVisibility(View.GONE);
                 btn_link_signup.setVisibility(View.VISIBLE);
                 tv_signIn.setVisibility(View.VISIBLE);
+                mBtnLoginFacebook.setVisibility(View.VISIBLE);
 
             }
         });
@@ -360,6 +417,7 @@ public class ProfileFragment extends Fragment {
         btn_login.setVisibility(View.VISIBLE);
         btn_link_signup.setVisibility(View.VISIBLE);
         tv_signIn.setVisibility(View.VISIBLE);
+        mBtnLoginFacebook.setVisibility(View.VISIBLE);
     }
 
     private void UpdateProfileView_GG(){
@@ -390,6 +448,7 @@ public class ProfileFragment extends Fragment {
         btn_login.setVisibility(View.GONE);
         btn_link_signup.setVisibility(View.GONE);
         tv_signIn.setVisibility(View.GONE);
+        mBtnLoginFacebook.setVisibility(View.GONE);
     }
 
 
