@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
-                
+
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
 

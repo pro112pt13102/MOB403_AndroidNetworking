@@ -49,7 +49,7 @@ public class SplashScreen extends AppCompatActivity{
         textView=(TextView)findViewById(R.id.textView);
         textView.setText("");
 
-        final long period = 85;
+        final long period = 100;
         timer=new Timer();
         timer.schedule(new TimerTask() {
             @Override
