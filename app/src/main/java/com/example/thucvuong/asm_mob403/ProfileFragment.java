@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -27,6 +28,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -62,10 +64,11 @@ public class ProfileFragment extends Fragment {
     private FirebaseUser user;
     private TextView tv_username, tv_usermail, tv_signIn;
     private String TAG = "GG";
-    private Button btn_signout_gg, btn_login, btn_signout, btn_link_signup;
+    private Button btn_signout_gg, btn_login, btn_signout, btn_link_signup, btn_signout_fb;
 
-    private ImageView img_profile, img_GG, imgView_FB;
+    private ImageView img_profile, img_GG;
     private EditText edt_email, edt_password;
+    private TextInputLayout txtInput_email, txtInput_password;
     private ProgressBar progressBar;
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -96,32 +99,33 @@ public class ProfileFragment extends Fragment {
 
         init(view);
 
+
+
         mCallbackManager = CallbackManager.Factory.create();
         mBtnLoginFacebook = (LoginButton) view.findViewById(R.id.btn_login_facebook);
         //mBtnLoginFacebook.setReadPermissions("email");
-        mBtnLoginFacebook.setReadPermissions(Arrays.asList("email, public_profile"));
-        mBtnLoginFacebook.setFragment(this);
 
-        mBtnLoginFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                // App code
-                //Toast.makeText(getContext(), ""+loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
-                //Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
-                img_profile.setVisibility(View.VISIBLE);
+        if(isLoggedIn){
 
-                edt_email.setVisibility(View.GONE);
-                edt_password.setVisibility(View.GONE);
-                btn_login.setVisibility(View.GONE);
-                img_GG.setVisibility(View.GONE);
-                btn_link_signup.setVisibility(View.GONE);
-                tv_signIn.setVisibility(View.GONE);
-                tv_username.setVisibility(View.VISIBLE);
+            img_profile.setVisibility(View.VISIBLE);
+
+            edt_email.setVisibility(View.GONE);
+            edt_password.setVisibility(View.GONE);
+            btn_login.setVisibility(View.GONE);
+            img_GG.setVisibility(View.GONE);
+            btn_link_signup.setVisibility(View.GONE);
+            tv_signIn.setVisibility(View.GONE);
+            tv_username.setVisibility(View.VISIBLE);
+            btn_signout_fb.setVisibility(View.VISIBLE);
+            txtInput_email.setVisibility(View.GONE);
+            txtInput_password.setVisibility(View.GONE);
+            mBtnLoginFacebook.setVisibility(View.GONE);
 
 
-
-                AccessToken accessToken = loginResult.getAccessToken();
+            //AccessToken accessToken = loginResult.getAccessToken();
                 GraphRequest request = GraphRequest.newMeRequest(
                         accessToken,
                         new GraphRequest.GraphJSONObjectCallback() {
@@ -153,6 +157,38 @@ public class ProfileFragment extends Fragment {
                 parameters.putString("fields", "id,name");
                 request.setParameters(parameters);
                 request.executeAsync();
+
+
+        }
+
+
+        mBtnLoginFacebook.setReadPermissions(Arrays.asList("email, public_profile"));
+        mBtnLoginFacebook.setFragment(this);
+
+        mBtnLoginFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                //Toast.makeText(getContext(), ""+loginResult.getAccessToken().getUserId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                img_profile.setVisibility(View.VISIBLE);
+
+                edt_email.setVisibility(View.GONE);
+                edt_password.setVisibility(View.GONE);
+                btn_login.setVisibility(View.GONE);
+                img_GG.setVisibility(View.GONE);
+                btn_link_signup.setVisibility(View.GONE);
+                tv_signIn.setVisibility(View.GONE);
+                tv_username.setVisibility(View.VISIBLE);
+                btn_signout_fb.setVisibility(View.VISIBLE);
+                mBtnLoginFacebook.setVisibility(View.GONE);
+                txtInput_email.setVisibility(View.GONE);
+                txtInput_password.setVisibility(View.GONE);
+
+                userprofileFB(loginResult);
+
+
             }
 
             @Override
@@ -204,6 +240,8 @@ public class ProfileFragment extends Fragment {
                 btn_link_signup.setVisibility(View.GONE);
                 tv_signIn.setVisibility(View.GONE);
                 mBtnLoginFacebook.setVisibility(View.GONE);
+                txtInput_email.setVisibility(View.GONE);
+                txtInput_password.setVisibility(View.GONE);
 
                 } else if (user.getProviderId().equals("google.com")) {
                     //For linked Google account
@@ -278,6 +316,8 @@ public class ProfileFragment extends Fragment {
                                     btn_link_signup.setVisibility(View.GONE);
                                     tv_signIn.setVisibility(View.GONE);
                                     mBtnLoginFacebook.setVisibility(View.GONE);
+                                    txtInput_email.setVisibility(View.GONE);
+                                    txtInput_password.setVisibility(View.GONE);
 
 
 
@@ -305,6 +345,9 @@ public class ProfileFragment extends Fragment {
                 tv_signIn.setVisibility(View.VISIBLE);
                 mBtnLoginFacebook.setVisibility(View.VISIBLE);
 
+                txtInput_email.setVisibility(View.VISIBLE);
+                txtInput_password.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -319,7 +362,27 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        btn_signout_fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginManager.getInstance().logOut();
+                edt_email.setVisibility(View.VISIBLE);
+                edt_password.setVisibility(View.VISIBLE);
+                tv_usermail.setVisibility(View.GONE);
+                img_GG.setVisibility(View.VISIBLE);
+                img_profile.setVisibility(View.GONE);
+                btn_login.setVisibility(View.VISIBLE);
+                btn_signout.setVisibility(View.GONE);
+                btn_link_signup.setVisibility(View.VISIBLE);
+                tv_signIn.setVisibility(View.VISIBLE);
+                mBtnLoginFacebook.setVisibility(View.VISIBLE);
+                btn_signout_fb.setVisibility(View.GONE);
+                txtInput_email.setVisibility(View.VISIBLE);
+                txtInput_password.setVisibility(View.VISIBLE);
+                tv_username.setVisibility(View.GONE);
 
+            }
+        });
 
 
 
@@ -342,6 +405,9 @@ public class ProfileFragment extends Fragment {
          btn_signout = view.findViewById(R.id.buttonSignout);
          btn_link_signup = view.findViewById(R.id.btn_signup);
          tv_signIn = view.findViewById(R.id.text_signIn);
+         btn_signout_fb = view.findViewById(R.id.buttonSignoutFB);
+         txtInput_email = view.findViewById(R.id.txt_input_email);
+         txtInput_password = view.findViewById(R.id.txt_input_password);
 
 
     }
@@ -418,6 +484,9 @@ public class ProfileFragment extends Fragment {
         btn_link_signup.setVisibility(View.VISIBLE);
         tv_signIn.setVisibility(View.VISIBLE);
         mBtnLoginFacebook.setVisibility(View.VISIBLE);
+        txtInput_email.setVisibility(View.VISIBLE);
+        txtInput_password.setVisibility(View.VISIBLE);
+
     }
 
     private void UpdateProfileView_GG(){
@@ -447,10 +516,46 @@ public class ProfileFragment extends Fragment {
         edt_password.setVisibility(View.GONE);
         btn_login.setVisibility(View.GONE);
         btn_link_signup.setVisibility(View.GONE);
+        mBtnLoginFacebook.setVisibility(View.GONE);
         tv_signIn.setVisibility(View.GONE);
         mBtnLoginFacebook.setVisibility(View.GONE);
+        txtInput_email.setVisibility(View.GONE);
+        txtInput_password.setVisibility(View.GONE);
     }
 
+    private void userprofileFB(LoginResult loginResult){
+        AccessToken accessToken = loginResult.getAccessToken();
+        GraphRequest request = GraphRequest.newMeRequest(
+                accessToken,
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(
+                            JSONObject object,
+                            GraphResponse response) {
+                        try {
 
+                            String userID = object.getString("id");
+                            String userName = object.getString("name");
+
+                            Picasso.get().load("https://graph.facebook.com/" + userID+ "/picture?type=large").into(img_profile);
+                            tv_username.setText(userName);
+
+                            Toast.makeText(getContext(), ""+userID+" "+userName, Toast.LENGTH_SHORT).show();
+
+                            //Picasso.get().load("https://graph.facebook.com/" + userID+ "/picture?type=large").into(imageView);
+                            //Bitmap b = (Bitmap) object.get("picture");
+                            Log.d("o/p", "name");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+        Bundle parameters = new Bundle();
+        //parameters.putString("fields", "id,name,link,birthday,picture");
+        parameters.putString("fields", "id,name");
+        request.setParameters(parameters);
+        request.executeAsync();
+    }
 
 }
