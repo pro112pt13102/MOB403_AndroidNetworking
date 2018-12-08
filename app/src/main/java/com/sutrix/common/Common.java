@@ -54,4 +54,17 @@ public class Common {
 
         return stringBuilder.toString();
     }
+
+    public static String getAddressWithTieuDe(String tieuDe){
+
+        String baseUrl = String.format("https://api.mlab.com/api/1/databases/%s/collections/%s",DB_NAME,COLLECTION_NAME);
+
+        StringBuilder stringBuilder = new StringBuilder(baseUrl);
+
+        stringBuilder.append("?apiKey="+API_KEY);
+
+        stringBuilder.append("&q={\"TieuDe\":{$regex:\""+tieuDe+"\"}}");
+
+        return stringBuilder.toString();
+    }
 }
