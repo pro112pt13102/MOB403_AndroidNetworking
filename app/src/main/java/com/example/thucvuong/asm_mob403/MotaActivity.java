@@ -89,9 +89,19 @@ public class MotaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MotaActivity.this, ReadActivity.class);
-                intent.putExtra("truyens", truyens);
-                startActivity(intent);
+
+
+                for (String string : truyens.get(0).getTheLoai()){
+                    if (string.equalsIgnoreCase("TruyenTranh")){
+                        Intent intent = new Intent(MotaActivity.this, ReadTruyenTranhActivity.class);
+                        intent.putExtra("truyens", truyens);
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(MotaActivity.this, ReadActivity.class);
+                        intent.putExtra("truyens", truyens);
+                        startActivity(intent);
+                    }
+                }
 
             }
         });
