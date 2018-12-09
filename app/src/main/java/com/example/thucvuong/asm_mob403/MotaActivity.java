@@ -100,6 +100,7 @@ public class MotaActivity extends AppCompatActivity {
                         Intent intent = new Intent(MotaActivity.this, ReadActivity.class);
                         intent.putExtra("truyens", truyens);
                         startActivity(intent);
+                        break;
                     }
                 }
 
