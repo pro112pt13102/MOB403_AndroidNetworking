@@ -72,6 +72,7 @@ public class TheloaiFragment extends Fragment {
         theloais.add("HaiHuoc");
         theloais.add("QuanSu");
         theloais.add("LichSu");
+        theloais.add("TruyenTranh");
 
     }
 
