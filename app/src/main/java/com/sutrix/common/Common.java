@@ -50,7 +50,7 @@ public class Common {
 
         stringBuilder.append("?apiKey="+API_KEY);
 
-        stringBuilder.append("&l="+limitTruyen);
+        stringBuilder.append("&l="+limitTruyen    +"&s={\"NgayCapNhat\":-1}");
 
         return stringBuilder.toString();
     }
