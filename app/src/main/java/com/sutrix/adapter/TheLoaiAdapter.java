@@ -113,6 +113,10 @@ public class TheLoaiAdapter extends RecyclerView.Adapter<TheLoaiAdapter.ViewHold
                 viewHolder.textViewTheLoai.setText("Lịch Sử");break;
             }
 
+            case "TruyenTranh": {
+                viewHolder.textViewTheLoai.setText("Truyện Tranh");break;
+            }
+
             default: break;
         }
 
