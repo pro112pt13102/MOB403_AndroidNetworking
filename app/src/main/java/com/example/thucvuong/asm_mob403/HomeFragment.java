@@ -84,8 +84,14 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(getActivity(), MainActivity.class);
-                startActivity(i);
+
+                String oid = truyens.get(0).get_id().getOid();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.putExtra("oid", oid);
+                startActivity(intent);
+
+//                Intent i = new Intent(getActivity(), MainActivity.class);
+//                startActivity(i);
 
 
             }

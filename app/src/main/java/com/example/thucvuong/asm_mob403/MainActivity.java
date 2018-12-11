@@ -204,18 +204,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                     truyens.add(truyen);
 
-
-                }
+               }
 
 
             }catch (Exception e){
                 e.printStackTrace();
             }
-
-
 //            Toast.makeText(SplashScreen.this, truyens.get(1).getHinh()+"", Toast.LENGTH_SHORT).show();
 
             pd.dismiss();
-        }
     }
+}
 }
