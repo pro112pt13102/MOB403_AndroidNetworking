@@ -65,7 +65,7 @@ public class TruyenAdapter extends RecyclerView.Adapter<TruyenAdapter.ViewHolder
         //viewHolder.textViewMoTa.setText(truyens.get(i).getMoTa());
         viewHolder.textViewSochuong.setText("Số chương: "+String.valueOf(truyens.get(i).getSoChuong()+" - "));
         viewHolder.textViewTacgia.setText("Tác giả: "+truyens.get(i).getTacGia());
-        viewHolder.textViewNgayUp.setText(truyens.get(i).getNgayUp());
+        viewHolder.textViewNgayUp.setText(truyens.get(i).getNgayCapNhat());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
