@@ -40,27 +40,7 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <Button
-            android:layout_alignParentLeft="true"
-            android:id="@+id/btn_previous_truyentranh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_action_previous"
-             />
-
-        <Button
-            android:layout_alignParentRight="true"
-            android:id="@+id/btn_next_truyentranh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_action_next"
-             />
-
-    </RelativeLayout>
 
 
     <LinearLayout

@@ -13,4 +13,13 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
     <!--monsplash theme end-->
+
+
+    <style name="FacebookLoginButton">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
 </resources>

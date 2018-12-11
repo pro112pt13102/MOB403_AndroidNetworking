@@ -48,8 +48,7 @@ public class ReadTruyenTranhActivity extends AppCompatActivity {
 
         tv_TieuDeTruyenTranh = findViewById(R.id.tv_TieuDeTruyenTranh);
         img_btn_backTruyenTranh = findViewById(R.id.img_btn_backTruyenTranh);
-        btn_previous_truyentranh = findViewById(R.id.btn_previous_truyentranh);
-        btn_next_truyentranh = findViewById(R.id.btn_next_truyentranh);
+
 
         recyclerView = findViewById(R.id.rc_truyentranh);
 
